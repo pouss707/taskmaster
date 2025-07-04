@@ -15,16 +15,12 @@ function DashboardLayout() {
             {!isSidebarOpen && (
                 <button
                     onClick={handleSidebar}
-                    className="absolute top-4 left-4 text-gray-700 hover:text-black z-50 bg-white p-2 rounded-md shadow"
+                    className=" w-10 h-10 ml-2 mt-2 text-gray-700 hover:text-black z-50 bg-white p-2 rounded-md shadow"
                     aria-label="Open sidebar"
                 >
                     <MenuIcon />
                 </button>
             )}
-
-            <main className="flex-1 p-4">
-                <h1 className="text-xl font-bold">Welcome to the Dashboard</h1>
-            </main>
         </div>
     )
 }

@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coreui/coreui": "^5.4.1",
+    "@coreui/coreui-pro": "^5.15.0",
+    "@coreui/react": "^5.7.0",
+    "@coreui/react-pro": "^5.17.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.2.0",
@@ -17,6 +21,7 @@
     "@mui/x-date-pickers": "^8.7.0",
     "@mui/x-date-pickers-pro": "^8.7.0",
     "@tailwindcss/vite": "^4.1.10",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "react": "^19.1.0",
     "react-calendar": "^6.0.0",
