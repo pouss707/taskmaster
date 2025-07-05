@@ -1,5 +1,5 @@
-import logo from '../assets/logo.png'
-import Closebutton from './Closebutton'
+import logo from '../../assets/logo.png'
+import Closebutton from '../sidebar/Closebutton'
 
 interface AccounttabProps {
     onClose: () => void
