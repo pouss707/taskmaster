@@ -44,10 +44,12 @@ export type QuickActionsProps = {
     onAction: (action: string) => void
 }
 
-export type CustomFullCalendarProps = {
+export interface CustomFullCalendarProps {
     initialEvents?: CalendarEvent[]
     onEventClick?: (event: CalendarEvent) => void
     onDateClick?: (date: string) => void
+    setEvents?: React.Dispatch<React.SetStateAction<CalendarEvent[]>>
+    inputValue?: CalendarEvent
+    setInputValue?: React.Dispatch<React.SetStateAction<CalendarEvent>>
     onAddEvent?: () => void
-    onQuickAction?: (action: string) => void
 }

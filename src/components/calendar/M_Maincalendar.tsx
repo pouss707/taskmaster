@@ -3,7 +3,7 @@ import type {
     CustomFullCalendarProps,
     ViewType,
 } from './Calendartypes'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CalendarHeader from './Header'
 import EventList from './Eventlist'
 import Monthview from './Monthview'
@@ -14,11 +14,13 @@ function CustomFullCalendar({
     initialEvents = [],
     onEventClick,
     onDateClick,
+    setEvents,
+    inputValue,
     onAddEvent,
 }: CustomFullCalendarProps) {
     const [currentDate, setCurrentDate] = useState<Date>(new Date())
     const [view, setView] = useState<ViewType>('month')
-    const [events] = useState<CalendarEvent[]>(
+    const [events, setLocalEvents] = useState<CalendarEvent[]>(
         initialEvents.length > 0
             ? initialEvents
             : [
@@ -52,6 +54,12 @@ function CustomFullCalendar({
               ]
     )
 
+    useEffect(() => {
+        if (initialEvents.length > 0) {
+            setLocalEvents(initialEvents)
+        }
+    }, [initialEvents])
+
     const navigateMonth = (direction: number): void => {
         const newDate = new Date(currentDate)
         newDate.setMonth(currentDate.getMonth() + direction)
@@ -73,6 +81,14 @@ function CustomFullCalendar({
     const handleAddEvent = (): void => {
         if (onAddEvent) {
             onAddEvent()
+        } else {
+            if (inputValue && inputValue.title.trim() !== '') {
+                const newEvent = { ...inputValue, id: events.length + 1 }
+                setLocalEvents([...events, newEvent])
+                if (setEvents) {
+                    setEvents([...events, newEvent])
+                }
+            }
         }
     }
 
@@ -87,7 +103,6 @@ function CustomFullCalendar({
             />
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                {/* Main Calendar */}
                 <div className="lg:col-span-3 ">
                     <div className="bg-white rounded-xl shadow-sm border p-6 h-145">
                         {view === 'month' && (
@@ -112,7 +127,6 @@ function CustomFullCalendar({
                     </div>
                 </div>
 
-                {/* Sidebar */}
                 <div className="space-y-6">
                     <MiniCalendar
                         currentDate={currentDate}
